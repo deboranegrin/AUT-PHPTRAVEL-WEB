@@ -1,5 +1,6 @@
 package curso.treinamento.steps;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,11 +26,16 @@ public class LoginSteps {
 	public void faço_o_login_com_o_usuário_e_senha(String user, String pass) {
 		
 		driver.findElement(By.name("email")).sendKeys(user);
-		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("123456");
+		driver.findElement(By.xpath("//input[@name='password']")).sendKeys(pass);
+		driver.findElement(By.xpath("//span[text()='Login']")).click();
 	}
 
 	@Então("sou autenticado com sucesso")
-	public void sou_autenticado_com_sucesso() {
+	public void sou_autenticado_com_sucesso() throws InterruptedException {
+		
+		Thread.sleep(5000);
+		Assert.assertTrue(driver.findElement(By.xpath("//a[@href='https://www.phptravels.net/admin/logout']")).isDisplayed());
+		
 	}
 
 }
