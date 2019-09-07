@@ -35,7 +35,13 @@ public class LoginSteps {
 		
 		Thread.sleep(5000);
 		Assert.assertTrue(driver.findElement(By.xpath("//a[@href='https://www.phptravels.net/admin/logout']")).isDisplayed());
+	}
 		
+	@Então("é apresentada a mensagem {string}")
+	public void é_apresentada_a_mensagem(String msg) throws InterruptedException {
+		
+		Thread.sleep(5000);		
+		Assert.assertTrue(driver.findElement(By.xpath("//p[text()='The Email field must contain a valid email address.']")).isDisplayed());
 	}
 
 }
