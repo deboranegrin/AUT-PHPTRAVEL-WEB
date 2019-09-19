@@ -1,5 +1,8 @@
 package curso.treinamento.setup;
 
+import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,14 +13,15 @@ import cucumber.api.java.Before;
 public class Hooks {
 
 	public static WebDriver driver;
+	public static ResourceBundle bundle = ResourceBundle.getBundle("project");
 
 	@Before
 	public void startTest(Scenario scenario) {
 
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/windows/chromedriver.exe");
 		driver = new ChromeDriver();
-
-		driver.get("https://www.phptravels.net/admin");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(bundle.getString("env.url"));
 
 	}
 
