@@ -37,6 +37,8 @@ public class LoginSteps {
 
 	@Então("é apresentada a mensagem {string}")
 	public void é_apresentada_a_mensagem(String msg) throws InterruptedException {
+		
+		Assert.assertTrue("Mensagem de erro não foi apresentada.", loginPage.validar_erro());
 
 	}
 

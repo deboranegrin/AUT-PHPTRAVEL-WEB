@@ -13,7 +13,7 @@ public class HomePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//a[@href='https://www.phptravels.net/admin/logout']")
+	@FindBy(xpath = "//a[@href='https://www.phptravels.net/demo/admin/logout']")
 	private WebElement linkLogout;
 
 
