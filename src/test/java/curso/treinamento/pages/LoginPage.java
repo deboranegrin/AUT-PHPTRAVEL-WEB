@@ -42,9 +42,9 @@ public class LoginPage {
 		return botaoLogin.isDisplayed();
 	}
 	
-	public Boolean validar_erro(String msg) {
+	public Boolean validar_erro(String mensagem) {
 		Helper.aguardar_elemento(10, msgErro);
-		return msg.equals(msgErro.getText());
+		return mensagem.equals(msgErro.getText());
 	}
 
 	
