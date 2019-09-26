@@ -9,9 +9,24 @@ import curso.treinamento.setup.Hooks;
 public class Helper {
 
 	public static void aguardar_elemento(int timeout, WebElement elemento) {
-		
+
 		WebDriverWait aguardar = new WebDriverWait(Hooks.getDriver(), timeout);
 		aguardar.until(ExpectedConditions.visibilityOf(elemento));
-		
+
 	}
+
+	public static boolean elemento_existe(WebElement elemento, int timeout) {
+
+		try {
+			aguardar_elemento(timeout, elemento);
+			
+			//return true;
+			return elemento.isDisplayed();
+
+		} catch (Exception e) {
+
+			return false;
+		}
+	}
+
 }
