@@ -17,19 +17,34 @@ public class MenuPage {
 
 	@FindBy(xpath = "//a[@href='#Cars']")
 	private WebElement menuCars;
-	
-		
-	public void clicar_menu_Cars() {
-		menuCars.click();
-	
-	}
-	
-	public boolean validar_submenu_cars(String subMenu) {
-		
-		return Helper.elemento_existe(Hooks.getDriver().findElement(By.xpath("//a[@href='#Cars']/following::a[text()='"+subMenu+"']")), 10);
-	}
-	
-}
-	
-	
 
+	@FindBy(xpath = "//a[@href='#ACCOUNTS']")
+	private WebElement menuAccounts;
+	
+		public void clicar_menu_cars() {
+		Helper.aguardar_elemento(30, menuCars);
+		menuCars.click();
+
+	}
+
+	public boolean validar_submenu_cars(String subMenu) {
+
+		return Helper.elemento_existe(
+				Hooks.getDriver().findElement(By.xpath("//a[@href='#Cars']/following::a[text()='" + subMenu + "']")),
+				10);
+	}
+
+	public void clicar_menu_accounts() {
+		Helper.aguardar_elemento(30, menuAccounts);
+		menuAccounts.click();
+
+	}
+
+	public boolean validar_submenu_accounts(String subMenu) {
+
+		return Helper.elemento_existe(
+				Hooks.getDriver().findElement(By.xpath("//a[@href='#ACCOUNTS']/following::a[text()='" + subMenu + "']")),
+				10);
+	}
+
+}
