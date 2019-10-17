@@ -18,6 +18,9 @@ public class AddAdminPage {
 
 	@FindBy(xpath = "//div[(text()='Add Admin')]")
 	private WebElement tituloPaginaAddAdmin;
+	
+//	@FindBy(xpath = "//div[text()='×']")
+//	private WebElement popUpNeedHelp;
 
 	@FindBy(name = "fname")
 	private WebElement campoFirstName;
@@ -50,12 +53,6 @@ public class AddAdminPage {
 //	@FindBy(xpath = "//div[(text()='Add')]//following::label[contains(.,'Hotels')][1]")
 //	private WebElement tituloCampoAdd;
 
-	@FindBy(xpath = "//div[(text(),'Edit')]")
-	private WebElement tituloCampoEdit;
-
-	@FindBy(xpath = "//div[(text(),'Remove')]")
-	private WebElement tituloCampoRemove;
-
 	@FindBy(xpath = "//button[text()='Submit']")
 	private WebElement botaoSubmit;
 
@@ -63,6 +60,10 @@ public class AddAdminPage {
 		Helper.aguardar_elemento(10, tituloPaginaAddAdmin);
 		return tituloPaginaAddAdmin.isDisplayed();
 	}
+	
+//	public void fechar_pop_up() {
+//		popUpNeedHelp.click();
+//	}
 
 	public void preencher_first_name(String firstName) {
 		campoFirstName.sendKeys(firstName);
