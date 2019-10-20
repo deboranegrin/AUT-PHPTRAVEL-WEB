@@ -17,7 +17,7 @@ public class LoginSteps {
 	@Dado("que eu esteja na tela de login")
 	public void que_eu_deseje_logar_no_sistema() throws InterruptedException {
 		
-		loginPage.clicar_remove_frame();
+//		loginPage.clicar_remove_frame();
 		
 		Assert.assertTrue("Página Login não foi apresentada.", loginPage.validar_pagina());
 	}

@@ -21,11 +21,35 @@ public class MenuPage {
 	@FindBy(xpath = "//a[@href='#ACCOUNTS']")
 	private WebElement menuAccounts;
 	
+	@FindBy(xpath = "//a[@href='#TravelhopeHotels']")
+	private WebElement menuTravelhopeHotels;
+	
+	@FindBy(xpath = "//a[@href='#Tours']")
+	private WebElement menuTours;
+	
 		public void clicar_menu_cars() {
 		Helper.aguardar_elemento(10, menuCars);
 		menuCars.click();
 
-	}
+		}
+		
+		public void clicar_menu_accounts() {
+			Helper.aguardar_elemento(10, menuAccounts);
+			menuAccounts.click();
+
+		}
+		
+		public void clicar_menu_travelhopeHotels() {
+			Helper.aguardar_elemento(10, menuTravelhopeHotels);
+			menuTravelhopeHotels.click();
+
+		}
+		
+		public void clicar_menu_tours() {
+			Helper.aguardar_elemento(10, menuTours);
+			menuTours.click();
+
+		}
 
 	public boolean validar_submenu_cars(String subMenu) {
 
@@ -34,12 +58,7 @@ public class MenuPage {
 				10);
 	}
 
-	public void clicar_menu_accounts() {
-		Helper.aguardar_elemento(10, menuAccounts);
-		menuAccounts.click();
-
-	}
-
+	
 	public boolean validar_submenu_accounts(String subMenu) {
 
 		return Helper.elemento_existe(
@@ -47,10 +66,27 @@ public class MenuPage {
 				10);
 	}
 	
+	public boolean validar_submenu_travelhopeHotels(String subMenu) {
+
+		return Helper.elemento_existe(
+				Hooks.getDriver().findElement(By.xpath("//a[@href='#TravelhopeHotels']/following::a[text()='" + subMenu + "']")),
+				10);
+	}
+	
+	public boolean validar_submenu_tours(String subMenu) {
+
+		return Helper.elemento_existe(
+				Hooks.getDriver().findElement(By.xpath("//a[@href='#Tours']/following::a[text()='" + subMenu + "']")),
+				10);
+	}
+	
 	public void clicar_subMenu(String menu, String subMenu) {
 		WebElement subMenu_ = Hooks.getDriver().findElement(By.xpath("//a[@href='#" + menu + "']/following::a[text()='" + subMenu + "']"));
 		subMenu_.click();
 	}
+	
+	
+// Poderia ser feito dessa forma
 	
 //	public void clicar_menu(String nomeMenu) {
 //		Hooks.getDriver().findElement(By.xpath("//a[@href='#"+nomeMenu+"']")).click();

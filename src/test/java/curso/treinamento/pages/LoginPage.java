@@ -28,10 +28,10 @@ public class LoginPage {
 	@FindBy(xpath = "//p[text()='The Email field must contain a valid email address.']")
 	private WebElement msgErro;
 	
-	public void clicar_remove_frame() {
-		if (Helper.elemento_existe(linkRemoveFrame, 10))
-			linkRemoveFrame.click();
-	}
+//	public void clicar_remove_frame() {
+//		if (Helper.elemento_existe(linkRemoveFrame, 10))
+//			linkRemoveFrame.click();
+//	}
 
 	public void preencher_email(String email) {
 		campoEmail.sendKeys(email);
@@ -46,7 +46,7 @@ public class LoginPage {
 	}
 	
 	public Boolean validar_pagina() {
-		Helper.aguardar_elemento(10, botaoLogin);
+		Helper.aguardar_elemento(5, botaoLogin);
 		return botaoLogin.isDisplayed();
 	}
 	
