@@ -2,7 +2,10 @@ package curso.treinamento.setup;
 
 import java.util.ResourceBundle;
 
+import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import cucumber.api.Scenario;
@@ -24,11 +27,11 @@ public class Hooks {
 		driver.get(bundle.getString("env.url"));
 
 	}
-
+	
 	@After
-	public void tearDown(Scenario scenario) {
-		driver.close();
-	}
+//	public void tearDown(Scenario scenario) {
+//		driver.close();
+//	}
 
 	public static WebDriver getDriver() {
 		return driver;

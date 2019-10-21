@@ -9,16 +9,16 @@ import org.openqa.selenium.support.PageFactory;
 import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 
-public class AdminsManagementPage {
+public class CustomersManagementPage {
 
-	public AdminsManagementPage(WebDriver driver) {
+	public CustomersManagementPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//div[text()='Admins Management']")
+	@FindBy(xpath = "//div[text()='Customers Management']")
 	private WebElement tituloPagina;
 
-	@FindBy(xpath = "//button[contains(text(),' Add')]")
+	@FindBy(xpath = "//button[contains(text(),'Add')]")
 	private WebElement btnAdd;
 
 	@FindBy(xpath = "//a[@title='Edit']")
@@ -54,9 +54,10 @@ public class AdminsManagementPage {
 		WebElement campo_ = Hooks.getDriver().findElement(By.xpath("//input[@name='" + campo + "']"));
 		campo_.clear();
 	}
-
+	
 	public void clicar_btn_Delete() {
 		btnDelete.click();
 
 	}
+
 }

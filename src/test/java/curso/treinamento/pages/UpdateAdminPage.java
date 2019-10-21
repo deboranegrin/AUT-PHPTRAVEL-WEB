@@ -10,14 +10,14 @@ import org.openqa.selenium.support.ui.Select;
 import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 
-public class AddAdminPage {
+public class UpdateAdminPage {
 
-	public AddAdminPage(WebDriver driver) {
+	public UpdateAdminPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//div[(text()='Add Admin')]")
-	private WebElement tituloPaginaAddAdmin;
+	@FindBy(xpath = "//div[(text()='Update Admin')]")
+	private WebElement tituloPaginaUpdateAdmin;
 	
 	@FindBy(name = "fname")
 	private WebElement campoFirstName;
@@ -46,18 +46,14 @@ public class AddAdminPage {
 	@FindBy(name = "status")
 	private WebElement comboBoxStatus;
 
-//	Preferência por reutilizar o xpath para o Add, Remove e Edit
-//	@FindBy(xpath = "//div[(text()='Add')]//following::label[contains(.,'Hotels')][1]")
-//	private WebElement tituloCampoAdd;
-
 	@FindBy(xpath = "//button[text()='Submit']")
 	private WebElement botaoSubmit;
 
-	public Boolean validar_pagina_add() {
-		Helper.aguardar_elemento(10, tituloPaginaAddAdmin);
-		return tituloPaginaAddAdmin.isDisplayed();
+	public Boolean validar_pagina_edit() {
+		Helper.aguardar_elemento(10, tituloPaginaUpdateAdmin);
+		return tituloPaginaUpdateAdmin.isDisplayed();
 	}
-	
+		
 	public void preencher_first_name(String firstName) {
 		campoFirstName.sendKeys(firstName);
 	}
@@ -79,11 +75,6 @@ public class AddAdminPage {
 	}
 
 	public void selecionar_country(String country) {
-
-//		Pode usar esse método comentado ou o abaixo (tanto faz)
-//		Select combo = new Select(comboBoxCountry);
-//		combo.selectByVisibleText(country);
-
 		new Select(comboBoxCountry).selectByVisibleText(country);
 	}
 
@@ -119,6 +110,13 @@ public class AddAdminPage {
 
 	public void clicar_btn_Submit() {
 		botaoSubmit.click();
+
+	}
+	
+	public boolean validar_email_na_tabela(String email) {
+
+		WebElement valorEmail = Hooks.getDriver().findElement(By.xpath("//td//a[text()='" + email + "']"));
+		return Helper.elemento_existe(valorEmail, 10);
 
 	}
 

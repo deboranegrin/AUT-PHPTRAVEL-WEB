@@ -1,23 +1,20 @@
 package curso.treinamento.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-
-import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 
-public class AddAdminPage {
+public class AddCustomerPage {
 
-	public AddAdminPage(WebDriver driver) {
+	public AddCustomerPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//div[(text()='Add Admin')]")
-	private WebElement tituloPaginaAddAdmin;
+	@FindBy(xpath = "//div[(text()='Add Customer')]")
+	private WebElement tituloPaginaAddCustomer;
 	
 	@FindBy(name = "fname")
 	private WebElement campoFirstName;
@@ -46,16 +43,13 @@ public class AddAdminPage {
 	@FindBy(name = "status")
 	private WebElement comboBoxStatus;
 
-//	Preferência por reutilizar o xpath para o Add, Remove e Edit
-//	@FindBy(xpath = "//div[(text()='Add')]//following::label[contains(.,'Hotels')][1]")
-//	private WebElement tituloCampoAdd;
 
 	@FindBy(xpath = "//button[text()='Submit']")
 	private WebElement botaoSubmit;
 
 	public Boolean validar_pagina_add() {
-		Helper.aguardar_elemento(10, tituloPaginaAddAdmin);
-		return tituloPaginaAddAdmin.isDisplayed();
+		Helper.aguardar_elemento(10, tituloPaginaAddCustomer);
+		return tituloPaginaAddCustomer.isDisplayed();
 	}
 	
 	public void preencher_first_name(String firstName) {
@@ -79,11 +73,6 @@ public class AddAdminPage {
 	}
 
 	public void selecionar_country(String country) {
-
-//		Pode usar esse método comentado ou o abaixo (tanto faz)
-//		Select combo = new Select(comboBoxCountry);
-//		combo.selectByVisibleText(country);
-
 		new Select(comboBoxCountry).selectByVisibleText(country);
 	}
 
@@ -99,27 +88,8 @@ public class AddAdminPage {
 		new Select(comboBoxStatus).selectByVisibleText(status);
 	}
 
-	public void selecionar_add(String add) {
-		Hooks.getDriver().findElement(By.xpath("//div[(text()='Add')]//following::label[contains(.,'" + add + "')][1]"))
-				.click();
-	}
-
-	public void selecionar_edit(String edit) {
-		Hooks.getDriver()
-				.findElement(
-						By.xpath("//div[contains(text(),'Edit')]//following::label[contains(.,'" + edit + "')][1]"))
-				.click();
-	}
-
-	public void selecionar_remove(String remove) {
-		Hooks.getDriver()
-				.findElement(By.xpath("//div[(text()='Remove')]//following::label[contains(.,'" + remove + "')][1]"))
-				.click();
-	}
-
 	public void clicar_btn_Submit() {
 		botaoSubmit.click();
-
 	}
 
 }

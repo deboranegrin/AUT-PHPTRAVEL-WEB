@@ -27,4 +27,9 @@ Funcionalidade: Visualização de Menu
   Cenário: Itens apresentados no menu Tours
     Quando acesso o menu Tours
     Então são apresentados os itens "Tours", "Add New", "Extras", "Reviews" e "Settings"  
+    
+  @General
+  Cenário: Itens apresentados no menu General
+    Quando acesso o menu General
+    Então são apresentados os itens "Settings", "Currencies", "Payment Gateways", "Widgets", "Sliders", "Email Templates", "SMS API Settings" e "Backup"
   

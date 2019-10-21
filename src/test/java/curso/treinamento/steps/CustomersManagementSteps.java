@@ -13,10 +13,8 @@ import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 import io.cucumber.datatable.DataTable;
 
-public class AdminsManagementSteps {
+public class CustomersManagementSteps {
 
-//	Instanciar pages
-	
 	MenuPage menuPage = new MenuPage(Hooks.getDriver());
 	AdminsManagementPage adminsManagementPage = new AdminsManagementPage(Hooks.getDriver());
 	AddAdminPage addAdminPage = new AddAdminPage(Hooks.getDriver());
