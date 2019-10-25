@@ -1,23 +1,23 @@
 # language: pt
-Funcionalidade: Admmins Management
+Funcionalidade: Admins Management
 
   Contexto: 
     Dado que eu esteja na tela de login
     Quando faço o login com o usuário "admin@phptravels.com" e senha "demoadmin"
     Dado que eu esteja na tela Home
     Quando acesso o menu Accounts
-    Dado que eu esteja na tela Admins Management
-    Quando incluo um administrador
-      | First Name | Last Name | Email               | Password | Mobile Number | Country | Address 1   | Address 2 | Status  | Add   | Edit | Remove    |
-      | Debora     | Negrin    | deborac@teste.com.br |   123456 |   11984698558 | Brazil  | Rua Jandira | Casa 2    | Enabled | Tours | Cars | Locations |
-    Então administrador cadastrado com sucesso
+    #Dado que eu esteja na tela Admins Management
+    #Quando incluo um administrador
+      #| First Name | Last Name | Email               | Password | Mobile Number | Country | Address 1   | Address 2 | Status  | Add   | Edit | Remove    |
+      #| Debora     | Negrin    | debora@teste.com.br |   123456 |   11984698558 | Brazil  | Rua Jandira | Casa 2    | Enabled | Tours | Cars | Locations |
+    #Então administrador cadastrado com sucesso
 
   @Admins
   Cenário: Adicionar administrador
     Dado que eu esteja na tela Admins Management
     Quando incluo um administrador
       | First Name | Last Name | Email                | Password | Mobile Number | Country | Address 1   | Address 2 | Status  | Add   | Edit | Remove    |
-      | Debora     | Negrin    | deborac@teste.com.br |   123456 |   11984698558 | Brazil  | Rua Jandira | Casa 2    | Enabled | Tours | Cars | Locations |
+      | Debora     | Negrin    | debora@teste.com.br |   123456 |   11984698558 | Brazil  | Rua Jandira | Casa 2    | Enabled | Tours | Cars | Locations |
     Então administrador cadastrado com sucesso
 
   @IncluirAdministradores
@@ -34,12 +34,17 @@ Funcionalidade: Admmins Management
 
   @EditAdmin
   Cenário: Alterar informacoes do administrador
+    Dado que eu esteja na tela Admins Management
     Quando edito um administrador
       | First Name | Last Name | Email               | Password  | Mobile Number | Country | Address 1   | Address 2 | Status   | Add    | Edit  | Remove   |
-      | Debs       | Cristina  | debs@teste.com.br   | debs123   |   11900000000 | Canada  | Rua Olimpia | Ap 44A    | Disabled | Hotels | Tours | Cars     |
-    Então administrador "<Email>" editado com sucesso
+      | Debs      | Cristina  | debs@teste.com.br   | debs123   |   11900000000 | Canada  | Rua Olimpia | Ap 44A    | Disabled | Hotels | Tours | Cars     |
+    Então administrador editado com sucesso
     
   @RemoveAdmin
   Cenário: Excluir administrador
+   	Dado que eu esteja na tela Admins Management
     Quando excluo um administrador
-    Então administrador "<Email>" editado com sucesso
+    ando edito um administrador
+      | First Name | Last Name | Email               | Password  | Mobile Number | Country | Address 1   | Address 2 | Status   | Add    | Edit  | Remove   |
+      | Debs       | Cristina  | debs@teste.com.br   | debs123   |   11900000000 | Canada  | Rua Olimpia | Ap 44A    | Disabled | Hotels | Tours | Cars     |
+    Então administrador excluido com sucesso

@@ -8,6 +8,7 @@ import cucumber.api.java.pt.Quando;
 import curso.treinamento.pages.AddAdminPage;
 import curso.treinamento.pages.AdminsManagementPage;
 import curso.treinamento.pages.MenuPage;
+import curso.treinamento.pages.RemoveAdminPage;
 import curso.treinamento.pages.UpdateAdminPage;
 import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
@@ -21,6 +22,7 @@ public class AdminsManagementSteps {
 	AdminsManagementPage adminsManagementPage = new AdminsManagementPage(Hooks.getDriver());
 	AddAdminPage addAdminPage = new AddAdminPage(Hooks.getDriver());
 	UpdateAdminPage updateAdminPage = new UpdateAdminPage(Hooks.getDriver());
+	RemoveAdminPage removeAdminPage = new RemoveAdminPage(Hooks.getDriver());
 
 	@Dado("que eu esteja na tela Admins Management")
 	public void que_eu_esteja_na_tela_Add_Management() {
@@ -137,11 +139,31 @@ public class AdminsManagementSteps {
 	}
 	
 	
-	@Então ("administrador {string} editado com sucesso")
-	public void administrador_editado_com_sucesso(String email) {
+	@Então ("administrador editado com sucesso")
+	public void administrador_editado_com_sucesso() {
 		
-		Assert.assertTrue("Usuário não editado com sucesso.", updateAdminPage.validar_email_na_tabela(email));
-
+		Assert.assertTrue("Usuário não editado com sucesso.", updateAdminPage.validar_email_na_tabela(Helper.dataTable.get(0).get("Email")));
+	
 	}
+	
+	@Quando("excluo um administrador")
+	public void excluo_um_administrador() {
+		
+		adminsManagementPage.clicar_btn_Delete();
+		
+		Assert.assertTrue("Página Update Admin NÃO apresentada.", updateAdminPage.validar_pagina_edit());
+		
+		// metodo para clicar no pop up javascript
+	}
+
+	@Então("administrador excluido com sucesso")
+	public void administrador_excluido_com_sucesso() {
+	    
+		//Assert.assertTrue("Usuário não excluído com sucesso.", removeAdminPage.validar_email_na_tabela(Helper.dataTable.get(0).get("Email")));
+		
+		Assert.assertEquals("Changes Saved!", removeAdminPage.validar_mensagem_remove());
+	
+	}
+
 	
 }
