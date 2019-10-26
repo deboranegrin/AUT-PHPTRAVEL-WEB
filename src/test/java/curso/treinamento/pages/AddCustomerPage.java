@@ -15,7 +15,7 @@ public class AddCustomerPage {
 
 	@FindBy(xpath = "//div[(text()='Add Customer')]")
 	private WebElement tituloPaginaAddCustomer;
-	
+
 	@FindBy(name = "fname")
 	private WebElement campoFirstName;
 
@@ -43,15 +43,14 @@ public class AddCustomerPage {
 	@FindBy(name = "status")
 	private WebElement comboBoxStatus;
 
-
 	@FindBy(xpath = "//button[text()='Submit']")
 	private WebElement botaoSubmit;
 
-	public Boolean validar_pagina_add() {
+	public Boolean validar_pagina_add_customer() {
 		Helper.aguardar_elemento(10, tituloPaginaAddCustomer);
 		return tituloPaginaAddCustomer.isDisplayed();
 	}
-	
+
 	public void preencher_first_name(String firstName) {
 		campoFirstName.sendKeys(firstName);
 	}
@@ -73,7 +72,9 @@ public class AddCustomerPage {
 	}
 
 	public void selecionar_country(String country) {
-		new Select(comboBoxCountry).selectByVisibleText(country);
+		Select combo = new Select(comboBoxCountry);
+		combo.selectByVisibleText(country);
+
 	}
 
 	public void preencher_address1(String address1) {
@@ -90,6 +91,7 @@ public class AddCustomerPage {
 
 	public void clicar_btn_Submit() {
 		botaoSubmit.click();
+
 	}
 
 }

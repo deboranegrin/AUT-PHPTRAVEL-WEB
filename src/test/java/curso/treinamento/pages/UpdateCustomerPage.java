@@ -10,14 +10,14 @@ import org.openqa.selenium.support.ui.Select;
 import curso.treinamento.setup.Hooks;
 import curso.treinamento.utils.Helper;
 
-public class RemoveAdminPage {
+public class UpdateCustomerPage {
 
-	public RemoveAdminPage(WebDriver driver) {
+	public UpdateCustomerPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//div[(text()='Update Admin')]")
-	private WebElement tituloPaginaUpdateAdmin;
+	@FindBy(xpath = "//div[(text()='Update Customer')]")
+	private WebElement tituloPaginaUpdateCustomer;
 	
 	@FindBy(name = "fname")
 	private WebElement campoFirstName;
@@ -48,13 +48,15 @@ public class RemoveAdminPage {
 
 	@FindBy(xpath = "//button[text()='Submit']")
 	private WebElement botaoSubmit;
+
+	public Boolean validar_pagina_edit_customer() {
+		Helper.aguardar_elemento(10, tituloPaginaUpdateCustomer);
+		return tituloPaginaUpdateCustomer.isDisplayed();
+	}
 	
-	@FindBy(xpath = "//h4[text()='Changes Saved!']")
-	private WebElement mensagemEsperada;
-	
-	public Boolean validar_pagina_edit() {
-		Helper.aguardar_elemento(10, tituloPaginaUpdateAdmin);
-		return tituloPaginaUpdateAdmin.isDisplayed();
+	public void limpar_campos(String campo) {
+		WebElement campo_ = Hooks.getDriver().findElement(By.xpath("//input[@name='" + campo + "']"));
+		campo_.clear();
 	}
 		
 	public void preencher_first_name(String firstName) {
@@ -120,11 +122,7 @@ public class RemoveAdminPage {
 
 		WebElement valorEmail = Hooks.getDriver().findElement(By.xpath("//td//a[text()='" + email + "']"));
 		return Helper.elemento_existe(valorEmail, 10);
+		
+	}
 
-	}
-	
-	public Boolean validar_mensagem_remove() {
-		Helper.aguardar_elemento(10, mensagemEsperada);
-		return mensagemEsperada.isDisplayed();
-	}
 }

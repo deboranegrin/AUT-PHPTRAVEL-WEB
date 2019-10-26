@@ -1,6 +1,7 @@
 package curso.treinamento.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,25 +17,30 @@ public class CustomersManagementPage {
 	}
 
 	@FindBy(xpath = "//div[text()='Customers Management']")
-	private WebElement tituloPagina;
+	private WebElement tituloPaginaCustomers;
 
 	@FindBy(xpath = "//button[contains(text(),'Add')]")
 	private WebElement btnAdd;
 
-	@FindBy(xpath = "//a[@title='Edit']")
-	private WebElement btnEdit;
-	
-	@FindBy(xpath = "//a[@title='DELETE']")
-	private WebElement btnDelete;
+	@FindBy(xpath = "//button[contains(text(),'All')]")
+	private WebElement btnAll;
+
+	@FindBy(xpath = "//a[text()='No, I do not want an improved experience.']")
+	private WebElement btnExperience;
 
 	public void clicar_btn_Add() {
 		btnAdd.click();
 
 	}
 
-	public boolean validar_pagina() {
+	public boolean validar_pagina_customers() {
 
-		return Helper.elemento_existe(tituloPagina, 10);
+		return Helper.elemento_existe(tituloPaginaCustomers, 10);
+
+	}
+
+	public void fechar_msg_Experience() {
+		btnExperience.click();
 
 	}
 
@@ -45,19 +51,63 @@ public class CustomersManagementPage {
 
 	}
 
-	public void clicar_btn_Edit() {
+	public String encontrar_customer_edit(String email) {
+
+		if (Helper.elemento_presente(10, By.xpath("//a[text()='" + email
+				+ "']/following::a[@href='https://phptravels.net/admin/accounts/customers/edit/219']")))
+			return "Cliente encontrado!";
+
+		return "";
+
+//		a[@title='Edit']
+	}
+
+	public void clicar_btn_edit_customers(String email) {
+
+		WebElement btnEdit = Hooks.getDriver()
+				.findElement(By.xpath("//a[@href='https://phptravels.net/admin/accounts/customers/edit/219']"));
+
+		JavascriptExecutor jse = (JavascriptExecutor) Hooks.getDriver();
+		jse.executeScript("arguments[0].scrollIntoView(); window.scrollBy(0, -90)", btnEdit);
+
 		btnEdit.click();
+	}
+
+	public void clicar_btn_All() {
+		btnAll.click();
 
 	}
 
-	public void limpar_campos(String campo) {
-		WebElement campo_ = Hooks.getDriver().findElement(By.xpath("//input[@name='" + campo + "']"));
-		campo_.clear();
+	public String encontrar_customer_remove(String email) {
+
+		if (Helper.elemento_presente(10, By.xpath("//a[text()='" + email + "']/following::a[@title='DELETE']")))
+			return "Cliente encontrado!";
+
+		return "";
+
 	}
-	
-	public void clicar_btn_Delete() {
+
+	public void clicar_btn_delete_customers(String email) {
+		WebElement btnDelete = Hooks.getDriver()
+				.findElement(By.xpath("//a[text()='" + email + "']/following::a[@title='DELETE']"));
+
+		JavascriptExecutor jse = (JavascriptExecutor) Hooks.getDriver();
+		jse.executeScript("arguments[0].scrollIntoView(); window.scrollBy(0, -90)", btnDelete);
+
 		btnDelete.click();
 
 	}
 
+	public void remover_customer() {
+		Hooks.getDriver().switchTo().alert().accept();
+
+	}
+
+	public String get_mensagem_customer() {
+
+		if (Helper.elemento_presente(20, By.xpath("//h4[text()='Changes Saved!']")))
+			return "Changes Saved!";
+
+		return "";
+	}
 }

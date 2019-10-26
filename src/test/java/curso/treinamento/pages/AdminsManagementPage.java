@@ -20,13 +20,7 @@ public class AdminsManagementPage {
 
 	@FindBy(xpath = "//button[contains(text(),' Add')]")
 	private WebElement btnAdd;
-
-	@FindBy(xpath = "//a[@title='Edit']")
-	private WebElement btnEdit;
 	
-	@FindBy(xpath = "//a[@title='DELETE']")
-	private WebElement btnDelete;
-
 	public void clicar_btn_Add() {
 		btnAdd.click();
 
@@ -39,24 +33,36 @@ public class AdminsManagementPage {
 	}
 
 	public boolean validar_email_na_tabela(String email) {
-
+		
 		WebElement valorEmail = Hooks.getDriver().findElement(By.xpath("//td//a[text()='" + email + "']"));
 		return Helper.elemento_existe(valorEmail, 10);
 
 	}
 
-	public void clicar_btn_Edit() {
+	public void clicar_btn_Edit(String email) {
+		WebElement btnEdit = Hooks.getDriver()
+				.findElement(By.xpath("//a[text()='" + email + "']/following::a[@title='Edit']"));
 		btnEdit.click();
 
 	}
-
-	public void limpar_campos(String campo) {
-		WebElement campo_ = Hooks.getDriver().findElement(By.xpath("//input[@name='" + campo + "']"));
-		campo_.clear();
-	}
-
-	public void clicar_btn_Delete() {
+	
+	public void clicar_btn_delete(String email) {
+		WebElement btnDelete = Hooks.getDriver()
+				.findElement(By.xpath("//a[text()='" + email + "']/following::a[@title='DELETE']"));
 		btnDelete.click();
 
+	}
+
+	public void remover_admin() {
+		Hooks.getDriver().switchTo().alert().accept();
+
+	}
+
+	public String get_mensagem() {
+		
+		if(Helper.elemento_presente(10, By.xpath("//h4[text()='Changes Saved!']")))
+			return "Changes Saved!";
+		
+		return "";
 	}
 }

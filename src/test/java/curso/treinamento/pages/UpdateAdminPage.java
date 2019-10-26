@@ -53,6 +53,11 @@ public class UpdateAdminPage {
 		Helper.aguardar_elemento(10, tituloPaginaUpdateAdmin);
 		return tituloPaginaUpdateAdmin.isDisplayed();
 	}
+	
+	public void limpar_campos(String campo) {
+		WebElement campo_ = Hooks.getDriver().findElement(By.xpath("//input[@name='" + campo + "']"));
+		campo_.clear();
+	}
 		
 	public void preencher_first_name(String firstName) {
 		campoFirstName.sendKeys(firstName);

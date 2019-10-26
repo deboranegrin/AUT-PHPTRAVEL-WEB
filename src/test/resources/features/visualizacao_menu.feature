@@ -31,5 +31,5 @@ Funcionalidade: Visualização de Menu
   @General
   Cenário: Itens apresentados no menu General
     Quando acesso o menu General
-    Então são apresentados os itens "Settings", "Currencies", "Payment Gateways", "Widgets", "Sliders", "Email Templates", "SMS API Settings" e "Backup"
+    Então são apresentados os itens "Settings", "Currencies", "Payment Gateways", "Social Connections", "Widgets", "Sliders", "Email Templates", "SMS API Settings" e "BackUp"
   
