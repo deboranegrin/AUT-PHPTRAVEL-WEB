@@ -1,5 +1,6 @@
 # language: pt
 
+@FuncionalidadeLogin
 Funcionalidade: Login
 
 	@LoginComSucesso

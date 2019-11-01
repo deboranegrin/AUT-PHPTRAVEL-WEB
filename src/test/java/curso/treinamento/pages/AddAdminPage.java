@@ -3,6 +3,8 @@ package curso.treinamento.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -45,17 +47,36 @@ public class AddAdminPage {
 
 	@FindBy(name = "status")
 	private WebElement comboBoxStatus;
-
+	
+	@FindBy(xpath = "//div[text()='×']")
+	private WebElement btnCloseNeedHelp;
+	
+	@FindBy(xpath = "//img[@alt='Chat now']")
+	private WebElement imgChatNow;
+	
+	@FindBy(xpath = "//button[text()='Submit']")
+	private WebElement botaoSubmit;
+	
 //	Preferência por reutilizar o xpath para o Add, Remove e Edit
 //	@FindBy(xpath = "//div[(text()='Add')]//following::label[contains(.,'Hotels')][1]")
 //	private WebElement tituloCampoAdd;
 
-	@FindBy(xpath = "//button[text()='Submit']")
-	private WebElement botaoSubmit;
 
 	public Boolean validar_pagina_add() {
 		Helper.aguardar_elemento(10, tituloPaginaAddAdmin);
 		return tituloPaginaAddAdmin.isDisplayed();
+	}
+	
+	public void clicar_fechar_need_help() {
+		
+		if(Helper.elemento_existe(imgChatNow, 5)) {
+			Actions builder = new Actions(Hooks.getDriver());
+			Action mouseOverHome = builder.moveToElement(imgChatNow).build();
+		
+			mouseOverHome.perform();
+			
+			btnCloseNeedHelp.click();
+		}
 	}
 	
 	public void preencher_first_name(String firstName) {

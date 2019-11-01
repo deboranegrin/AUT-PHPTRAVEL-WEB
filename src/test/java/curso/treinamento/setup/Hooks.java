@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import curso.treinamento.utils.Helper;
 
 public class Hooks {
 
@@ -24,9 +25,10 @@ public class Hooks {
 	}
 	
 	@After
-//	public void tearDown(Scenario scenario) {
-//		driver.close();
-//	}
+	public void tearDown(Scenario scenario) {
+		Helper.screenshot(scenario);
+		driver.close();
+	}
 
 	public static WebDriver getDriver() {
 		return driver;
